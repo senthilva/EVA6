@@ -1,4 +1,4 @@
-# Modified MNIST
+# Modified MNIST for Classification and Addition
 
 The objective is not only predict the number from the MNIST dataset , but also predict the sum of the random number(0-9) added to it.
 
