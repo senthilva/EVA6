@@ -1,20 +1,20 @@
 # Modified MNIST
 
-The objective is not onlt predict the number from the MNIST dataset , but also predict the sum on a random number added to it.
+The objective is not only predict the number from the MNIST dataset , but also predict the sum of the random number(0-9) added to it.
 
 ## Input Data prep-processing
 
-Buil a combined dataset using
+Build a combined dataset using
 
 *  torchvision MNIST
 *  Add random numbers between 0-9 as the second input
-*  2 outputs : predicted number and sum of predicted number and random number in the input
+*  2 outputs : predicted number and sum of predicted number and random number provided as input
 
 
 # Network Design
 
-* Convolution block using the image are input
-* **After the convolution add the 2nd input**
+* Convolution block using the image as input
+* **After the convolution add the 2nd input : random number**
 * Pass the ouput and random number (input2) through linear layers
 * No activation function required during addition of two numbers as it is a linear function
 
@@ -59,22 +59,15 @@ Buil a combined dataset using
   out2.weight 		 torch.Size([1, 5])
   out2.bias 		 torch.Size([1])
   ```
-  * Built a custom tokenizer using the spacy(en) as base  
-  * custom rules
-    * **factor spaces as a token**
-    * key words
-    * tabs after : and in blocks
-    * == , >=, <= to be treated as single token
-    * handled [,],(,),{,} 
-
-  ```
-
+ 
 ## Training and Loss
 
 * Number of epochs : 10
-* Loss - as there are 2 components - image detection and sum - 2 loss functions are used : cross entropy and mean square error both with equal weights
+* Loss - as there are 2 components - image detection and sum - 2 loss functions are used 
+  * cross entropy and mean square error both with equal weights
 
-    ```
+
+  ```
   Epoch: 1, loss: 8588.646249156445, Classification Acc: 72.58666666666667, Addition Acc: 52.27
   Epoch: 2, loss: 1329.7578395307064, Classification Acc: 96.93, Addition Acc: 91.17333333333333
   Epoch: 3, loss: 968.9839583390858, Classification Acc: 97.88, Addition Acc: 95.56333333333333
@@ -87,7 +80,7 @@ Buil a combined dataset using
   Epoch: 10, loss: 302.226245637954, Classification Acc: 99.325, Addition Acc: 99.08500000000001
   Finished Training
 
-    ```
+  ```
 
 ## Evaluation
 ```
@@ -99,5 +92,5 @@ Accuracy of the network on the 10,000 test images:  98.80191693290735
 ## Observations/ Learning
 
 * The model is able to predict the number and the sum very well
-* Equal weightages were given to both the losses which helped
-* No activation function required during addition of two numbers as it is a linear function
+* Equal weightages were given to both the losses - which helped
+* No activation function was used during addition of two numbers as it was a linear function
