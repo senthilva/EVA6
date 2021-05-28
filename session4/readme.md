@@ -51,7 +51,7 @@ The objective is achieve a test accuracy > 99.4% with less than 18K parameters w
 * Number of epochs : 19
 * Loss - Negative log likehood
 * batch_size = 128
-* 
+* Adam optimizer used
 
   ```
       0%|          | 0/469 [00:00<?, ?it/s]EPOCH : 1
