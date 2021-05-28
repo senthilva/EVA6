@@ -9,7 +9,7 @@ The objective is achieve a test accuracy > 99.4% with less than 18K parameters w
 *  Reduce parameters : reduced the channels max 32 used
 *  Reduce overfitting : Added batch normalization and dropout
 *  Data augmentation
-  *  Random rotation 15 degress
+  *  Random rotation 5 degress
   *  Colour Jitter
 
 
@@ -73,13 +73,8 @@ The objective is achieve a test accuracy > 99.4% with less than 18K parameters w
 
   ```
 
-## Evaluation
-```
-Accuracy of the network on the 10,000 test images:  98.80191693290735
-Accuracy of the network on the 10,000 test images:  98.80191693290735
-```
-
-
 ## Observations/ Learning
 
+* Total params: 16,626
+* Test accuracy achieved : 
 * No batch normalization or dropout was used to close to the prediction layer
