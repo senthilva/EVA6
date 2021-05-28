@@ -1,4 +1,8 @@
 
+# Team
+
+Nishad, Prasad, Owais, Senthil
+
 # Part 1 
 
 # Back propogation
