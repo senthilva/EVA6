@@ -1,4 +1,4 @@
-# Model 5 Reduce number of parameters
+# 5. Reduce number of parameters
 
 ## Target:
 Reduce the number of parameters to < 8K and maintain acuracy
