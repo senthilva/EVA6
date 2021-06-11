@@ -179,6 +179,12 @@ Incorporated the below as a configurable loss with flag l1_reg
 
 ![image](https://user-images.githubusercontent.com/8141261/121677883-1e96aa00-cad4-11eb-88dd-0ee81f7e1e62.png)
 
+
+## Normalization Calculations for 4 channel images
+
+![image](https://user-images.githubusercontent.com/8141261/121699327-75a87900-caec-11eb-8805-5857ef1879a9.png)
+
+
 ## Analysis:
 
 - Using L1 with batch normalization reduced the achieved accuracy compared to batch normalization alone (~ 1.5 % reduction).Maybe because L1 is forcing to use spare parameters.The model was underfitting too. Training accuracy was only ~97.49
