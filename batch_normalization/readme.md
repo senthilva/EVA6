@@ -144,11 +144,52 @@ Modified the class to take 2 parameters batch normalization type(bn_type) and dr
           x = x.view(-1, 10)
           return F.log_softmax(x, dim=-1)
 ```
+## Incorporating L1 regularization
+
+Incorporated the below as a configurable loss with flag l1_reg
+
+  ```
+    # Calculate loss
+        if l1_reg:
+          L1_reg = torch.tensor(0., requires_grad=True)
+          for name, param in model.named_parameters():
+            if 'weight' in name:
+              L1_reg = L1_reg + torch.norm(param, 1)
+
+          loss = F.nll_loss(y_pred, target) + 10e-4 * L1_reg  
+        else :  
+          loss = F.nll_loss(y_pred, target)
+```
+## Misclassified images Batch Normalization + L1
+
+![image](https://user-images.githubusercontent.com/8141261/121677793-02930880-cad4-11eb-855c-46aa804d3cef.png)
+
+## Misclassified images Layer Normalization
+
+![image](https://user-images.githubusercontent.com/8141261/121677826-0aeb4380-cad4-11eb-9647-4830c7d562f5.png)
+
+## Misclassified images Group Normalization
+
+![image](https://user-images.githubusercontent.com/8141261/121677862-163e6f00-cad4-11eb-8947-7705abbfef61.png)
 
 
 ## Results:
-![image](https://user-images.githubusercontent.com/8141261/121629176-4405c280-ca98-11eb-9ea2-a9a6cf348114.png)
 
+![image](https://user-images.githubusercontent.com/8141261/121677883-1e96aa00-cad4-11eb-88dd-0ee81f7e1e62.png)
 
 ## Analysis:
+
+- Using L1 with batch normalization reduced the achieved accuracy compared to batch normalization alone (~ 1.5 % reduction).Maybe because L1 is forcing to use spare parameters.The model was underfitting too. Training accuracy was only ~97.49
+- Learning was more uneven in while using batch normalization + L1
+- Layer and group normalization gve similar results compareed to Batch normalization + L1
+- Batch normalization + L1
+  - training accuracy : 97.41
+  - test accuracy : 98.33
+- Layer normalization
+  - training accuracy : 99.09
+  - test accuracy : 99.41
+- Group normalization
+  - training accuracy : 98.93
+  - test accuracy : 99.32
+
 
