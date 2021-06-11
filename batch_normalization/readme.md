@@ -1,9 +1,11 @@
 # Batch Normalization
 
 The goal here is to understand various batch normalization techniques on a neural network using the mnist dataset.
-- Network with Group Normalization
-- Network with Layer Normalization
 - Network with L1 + BN
+- Network with Layer Normalization
+- Network with Group Normalization
+
+
 
 ## Network Used
 
