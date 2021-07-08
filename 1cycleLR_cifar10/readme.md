@@ -2,13 +2,17 @@
 
 The goal here is to write a custom ResNet architecture for CIFAR10 to achive 90+ accuracy in less than 24 epochs using 1 cycle LR strategy
 
+## Library used
+
+https://github.com/senthilva/deeplearning_template
 
 
 ## Custom Network built
 
+https://github.com/senthilva/deeplearning_template/blob/main/models/custom_resnet.py
 
 ```
-     import torch
+    import torch
     import torch.nn as nn
     import torch.nn.functional as F
 
