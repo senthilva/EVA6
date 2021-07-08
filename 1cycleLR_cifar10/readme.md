@@ -1,4 +1,4 @@
-# 1 Cycle LR for CIFAR 10
+# Super convergence using 1 Cycle LR for CIFAR 10
 
 The goal here is to write a custom ResNet architecture for CIFAR10 to achive 90+ accuracy in less than 24 epochs using 1 cycle LR strategy
 
@@ -89,32 +89,42 @@ https://github.com/senthilva/deeplearning_template/blob/main/models/custom_resne
 
 
 
-```
- def transform_trainv2():
-    return A.Compose(
-    [
-        A.CropAndPad(4,pad_mode=0, pad_cval=0, pad_cval_mask=0, 
-                     keep_size=False, sample_independently=True, interpolation=1, 
-                     always_apply=True),
-        A.RandomCrop(32,32,always_apply=True),
-        A.HorizontalFlip(p=0.5),
-        A.CoarseDropout(max_holes = 1, max_height=8, max_width=8, min_holes = 1, min_height=1, min_width=1, fill_value=0.5, mask_fill_value = None),
-        A.Normalize((0.4914, 0.4822, 0.4465), 
-                    (0.2023, 0.1994, 0.2010)),
-        ToTensorV2(),
-    ])
-      
-def transform_testv2():
-    return A.Compose(
-    [
-        A.Normalize((0.4914, 0.4822, 0.4465), 
-                    (0.2023, 0.1994, 0.2010)),
-        ToTensorV2(),
-    ])
-```
+    ```
+     def transform_trainv2():
+        return A.Compose(
+        [
+            A.CropAndPad(4,pad_mode=0, pad_cval=0, pad_cval_mask=0, 
+                         keep_size=False, sample_independently=True, interpolation=1, 
+                         always_apply=True),
+            A.RandomCrop(32,32,always_apply=True),
+            A.HorizontalFlip(p=0.5),
+            A.CoarseDropout(max_holes = 1, max_height=8, max_width=8, min_holes = 1, min_height=1, min_width=1, fill_value=0.5, mask_fill_value = None),
+            A.Normalize((0.4914, 0.4822, 0.4465), 
+                        (0.2023, 0.1994, 0.2010)),
+            ToTensorV2(),
+        ])
+
+    def transform_testv2():
+        return A.Compose(
+        [
+            A.Normalize((0.4914, 0.4822, 0.4465), 
+                        (0.2023, 0.1994, 0.2010)),
+            ToTensorV2(),
+        ])
+    ```
 
 
-## Misclassified images 
+## 1 Cycle LR used
+
+    ```
+
+    optimizer = optim.SGD(net.parameters(), lr=args.lr,
+                          momentum=0.9,weight_decay=5e-4)
+    scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer, max_lr=0.05,
+                                                    pct_start = 0.2,
+                                                    steps_per_epoch=len(trainloader),
+                                                    epochs=25)
+    ```
 
 
 ## Results:
@@ -122,6 +132,11 @@ def transform_testv2():
 
 
 ## Analysis:
+
+- After building the network , it took a couple of iterations to find the max LR and min LR
+    - Tried with max LR of 1 and 2. Max test accuracy was at 24 epoch of ~85%
+    - Reduced max LR to 0.5 Max test accuracy was 
+
 
 
 
