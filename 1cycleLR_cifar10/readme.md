@@ -118,12 +118,13 @@ https://github.com/senthilva/deeplearning_template/blob/main/models/custom_resne
 
     ```
 
+    criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=args.lr,
                           momentum=0.9,weight_decay=5e-4)
-    scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer, max_lr=0.05,
-                                                    pct_start = 0.2,
+    scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer, max_lr=0.4,
+                                                    pct_start = 0.18,
                                                     steps_per_epoch=len(trainloader),
-                                                    epochs=25)
+                                                    epochs=26)
     ```
 
 
@@ -134,8 +135,8 @@ https://github.com/senthilva/deeplearning_template/blob/main/models/custom_resne
 ## Analysis:
 
 - After building the network , it took a couple of iterations to find the max LR and min LR
-    - Tried with max LR of 1 and 2. Max test accuracy was at 24 epoch of ~85%
-    - Reduced max LR to 0.5 Max test accuracy was 
+    - Tried with max LR of 1 and 2. Max test accuracy was at 24 epoch of ~85% at 24 epochs
+    - Reduced max LR to 0.4 Max test accuracy was 88.59% at 24 spochs
 
 
 
