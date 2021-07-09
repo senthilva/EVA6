@@ -2,6 +2,10 @@
 
 The goal here is to write a custom ResNet architecture for CIFAR10 to achive 90+ accuracy in less than 24 epochs using 1 cycle LR strategy
 
+## Team mates
+
+Nishad, Prasad, Owais, Senthil
+
 ## Library used
 
 https://github.com/senthilva/deeplearning_template
