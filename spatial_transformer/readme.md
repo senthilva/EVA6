@@ -2,16 +2,12 @@
 # Spatial Transformer for CIFAR10
 
 The goal here is to implement the spatial transformer for CIFAR10
+- Ref : https://brsoff.github.io/tutorials/intermediate/spatial_transformer_tutorial.html
 
 
+## Code Changes
 
-## Reference 
-
-https://brsoff.github.io/tutorials/intermediate/spatial_transformer_tutorial.html
-
-
-
-## Changes made
+https://github.com/senthilva/EVA6/blob/main/spatial_transformer/spatial_transformer_cifar.ipynb
 
 ## Loading data
 
@@ -37,7 +33,7 @@ https://brsoff.github.io/tutorials/intermediate/spatial_transformer_tutorial.htm
 
 ## Network
 
-    Changes done to incorporate 3 channels and modify the FC to accomodate 32x32 vs 28x28
+Changes done to incorporate 3 channels and modify the FC to accomodate 32x32 vs 28x28
 
     ```
      class Net(nn.Module):
