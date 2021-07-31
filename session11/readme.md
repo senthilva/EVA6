@@ -48,3 +48,9 @@ custom.data
   names=data/customdata/custom.names
 
 ```
+
+# Run the model on custom video from youtube
+
+## Output at 3 epochs
+
+https://www.youtube.com/watch?v=X9Os8B6OglA
