@@ -137,9 +137,53 @@ Changes done to incorporate 3 channels and modify the FC to accomodate 32x32 vs 
     ```
 
 
+# Walkthrough of ViT
+
+## class ViT
+-Init
+    - get image and patch size
+    - get number of patches
+    - Convert patches to embedding using a linear layer
+    - convert patches to pos embedding using parameter
+    - convert dim to cls token using parameter
+    - Init transformer
+    - MLP head - layer normalization and linear
+
+- Forward
+    - convert image to patch embedding
+    - add cls tokens, pos embedding
+    - apply dropout
+    - pass through transformer layer
+    - pass through layer normalization and linear
+         
+## class transformer
+
+- for parameter of depth
+    - Apply layer normalization and attention
+    - Apply layer normalization and feedforward
+- Apply skip connections
+
+## Class Pre Norm
+
+- Does Layer normalization
+
+## Class Attention
+
+- Init
+    - get heads
+    - to_qkv - for query,key, value,
+    - to_out - linear layer and droput
+- forward
+    - get q,k,v values
+    - build self attention
+    - pass it through linear layer and apply dropout 
 
 
+## Class Feedforward 
 
-
-
+- Linear layer (dim, hidden dim)
+- GELU
+- Dropout
+- Linear
+- Dropout
 
