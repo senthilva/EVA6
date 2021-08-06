@@ -140,7 +140,8 @@ Changes done to incorporate 3 channels and modify the FC to accomodate 32x32 vs 
 # Walkthrough of ViT
 
 ## class ViT
--Init
+
+- Init
     - get image and patch size
     - get number of patches
     - Convert patches to embedding using a linear layer
