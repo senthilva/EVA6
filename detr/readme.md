@@ -5,7 +5,7 @@ The goal here is to understand DETR
 
 
 
-## DETR PAper
+## DETR Paper
 
 https://arxiv.org/pdf/2005.12872.pdf
 
@@ -17,11 +17,45 @@ https://github.com/senthilva/EVA6/blob/main/detr/finetune_detr.ipynb
 
 ## DETR
 
+- DETR uses a direct set prediction approach
+- It predicts final set of predictions by combining a CNN and transformer architecture
+- CNN used to learn 2D representation of the image
+- Removes need for prior knowledge
+- It predicts all objects at once
+
+
 ## Encoder Decoder Architecture
 
+- Self attention mechanism helps remove duplicate predictions
+
+- Encoder
+    - 1x1 reduced the channel dimension
+    - Standard multi head attention and feed forward network
+    - Positional Encodings are provided 
+
+-  Decoder
+    - Uses encoder decoder attention
+    - DETR decodes the N obkects in parallel at each decoder layer      
+
+- Feed forward networks
+    -  3 layer perceptron with RELU
+    -  predicts the normalized enter coordinates, height and width of the box
+    -  also predicts the class label
+    -  no object class is also used for background
+    
 ## Bipartite Loss
 
+- Unique to DETR wherein the loss factors both the class and the bounding box
+- DETR infers a fixed size set of N predictions in a single pass
+- 1-1 matching for direct set prediction without duplicates is the key differentiator
+- Hungarian loss function is used
+-
+
 ## Object Queries
+
+- transformer decoder takes a fixed number of learned positional embeddings - these are called object queries
+- this attends to encoder output
+- the object queries are trasnformed into an output embedding by the decoder
 
 
 ## Results
@@ -310,57 +344,5 @@ With validation image
 
 
     ```
-
-
-# Walkthrough of ViT
-
-## class ViT
-
-- Init
-    - get image and patch size
-    - get number of patches
-    - Convert patches to embedding using a linear layer
-    - convert patches to pos embedding using parameter
-    - convert dim to cls token using parameter
-    - Init transformer
-    - MLP head - layer normalization and linear
-
-- Forward
-    - convert image to patch embedding
-    - add cls tokens, pos embedding
-    - apply dropout
-    - pass through transformer layer
-    - pass through layer normalization and linear
-         
-## class transformer
-
-- for parameter of depth
-    - Apply layer normalization and attention
-    - Apply layer normalization and feedforward
-- Apply skip connections
-
-## Class Pre Norm
-
-- Does Layer normalization
-
-## Class Attention
-
-- Init
-    - get heads
-    - to_qkv - for query,key, value,
-    - to_out - linear layer and droput
-- forward
-    - get q,k,v values
-    - build self attention
-    - pass it through linear layer and apply dropout 
-
-
-## Class Feedforward 
-
-- Linear layer (dim, hidden dim)
-- GELU
-- Dropout
-- Linear
-- Dropout
 
 
